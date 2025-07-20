@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import "./List.css";
+import PropTypes from "prop-types";
 
 class List extends Component {
+  static propTypes = {
+    contacts: PropTypes.array.isRequired,
+  };
   render() {
     return (
       <div className="listArea">
@@ -12,21 +16,13 @@ class List extends Component {
         />
 
         <ul className="list">
-          <li>
-            <span className="name">Can Boz</span>
-            <span className="phone">0555 555 55 55</span>
-            <span className="clearfix"></span>
-          </li>
-          <li>
-            <span className="name">Tuba Tekin</span>
-            <span className="phone">0555 555 55 55</span>
-            <span className="clearfix"></span>
-          </li>
-          <li>
-            <span className="name">Ahmet Palalıoğlu</span>
-            <span className="phone">0555 555 55 55</span>
-            <span className="clearfix"></span>
-          </li>
+          {this.props.contacts.map((contact) => (
+            <li key={contact.phone}>
+              <span className="name">{contact.name}</span>
+              <span className="phone">{contact.phone}</span>
+              <span className="clearfix"></span>
+            </li>
+          ))}
         </ul>
       </div>
     );
